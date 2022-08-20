@@ -1,21 +1,24 @@
-﻿public class UnaryOperationNode
+﻿namespace MathSharp
 {
-    public Token OperatorToken { get; set; }
-    public object Node { get; set; }
-    public Position PositionStart { get; set; }
-    public Position PositionEnd { get; set; }
-
-    public UnaryOperationNode(Token operatorToken, object node)
+    public class UnaryOperationNode
     {
-        OperatorToken = operatorToken;
-        Node = node;
+        public Token OperatorToken { get; set; }
+        public object Node { get; set; }
+        public Position PositionStart { get; set; }
+        public Position PositionEnd { get; set; }
 
-        PositionStart = operatorToken.PositionStart;
-        PositionEnd = (Position)node.GetType().GetProperty("PositionEnd").GetValue(node);
-    }
+        public UnaryOperationNode(Token operatorToken, object node)
+        {
+            OperatorToken = operatorToken;
+            Node = node;
 
-    public override string ToString()
-    {
-        return $"({OperatorToken.ToString()}, {Node.ToString()})";
+            PositionStart = operatorToken.PositionStart;
+            PositionEnd = (Position)node.GetType().GetProperty("PositionEnd").GetValue(node);
+        }
+
+        public override string ToString()
+        {
+            return $"({OperatorToken.ToString()}, {Node.ToString()})";
+        }
     }
 }

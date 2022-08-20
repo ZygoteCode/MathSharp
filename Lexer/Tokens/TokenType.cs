@@ -1,12 +1,15 @@
-﻿public enum TokenType
+﻿namespace MathSharp
 {
-    NUMBER,
-    PLUS,
-    MINUS,
-    MUL,
-    DIV,
-    LPAREN,
-    RPAREN,
-    EOF,
-    POW
+    public enum TokenType
+    {
+        NUMBER,
+        PLUS,
+        MINUS,
+        MUL,
+        DIV,
+        LPAREN,
+        RPAREN,
+        EOF,
+        POW
+    }
 }

@@ -1,7 +1,10 @@
-﻿public class IllegalCharacterError : Error
+﻿namespace MathSharp
 {
-    public IllegalCharacterError(Position positionStart, Position positionEnd, string details) : base(positionStart, positionEnd, "Illegal character", details)
+    public class IllegalCharacterError : Error
     {
+        public IllegalCharacterError(Position positionStart, Position positionEnd, string details) : base(positionStart, positionEnd, "Illegal character", details)
+        {
 
+        }
     }
 }

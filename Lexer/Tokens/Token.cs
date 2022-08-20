@@ -1,34 +1,37 @@
-﻿public class Token
+﻿namespace MathSharp
 {
-    public TokenType Type { get; set; }
-    public object Value { get; set; }
-    public Position PositionStart { get; set; }
-    public Position PositionEnd { get; set; }
-
-    public Token(TokenType type, object value = null, Position positionStart = null, Position positionEnd = null)
+    public class Token
     {
-        Type = type;
-        Value = value;
+        public TokenType Type { get; set; }
+        public object Value { get; set; }
+        public Position PositionStart { get; set; }
+        public Position PositionEnd { get; set; }
 
-        if (positionStart != null)
+        public Token(TokenType type, object value = null, Position positionStart = null, Position positionEnd = null)
         {
-            PositionStart = positionStart.Clone();
-            PositionEnd = positionStart.Clone().Next();
+            Type = type;
+            Value = value;
+
+            if (positionStart != null)
+            {
+                PositionStart = positionStart.Clone();
+                PositionEnd = positionStart.Clone().Next();
+            }
+
+            if (positionEnd != null)
+            {
+                PositionEnd = positionEnd;
+            }
         }
 
-        if (positionEnd != null)
+        public override string ToString()
         {
-            PositionEnd = positionEnd;
-        }
-    }
+            if (Value == null)
+            {
+                return Type.ToString();
+            }
 
-    public override string ToString()
-    {
-        if (Value == null)
-        {
-            return Type.ToString();
+            return $"{Type.ToString()}:{Value.ToString()}";
         }
-
-        return $"{Type.ToString()}:{Value.ToString()}";
     }
 }

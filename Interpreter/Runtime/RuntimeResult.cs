@@ -1,27 +1,30 @@
-﻿public class RuntimeResult
+﻿namespace MathSharp
 {
-    public Number Value { get; set; }
-    public Error Error { get; set; }
-
-    public Number Register(RuntimeResult result)
+    public class RuntimeResult
     {
-        if (result.Error != null)
+        public Number Value { get; set; }
+        public Error Error { get; set; }
+
+        public Number Register(RuntimeResult result)
         {
-            Error = result.Error;
+            if (result.Error != null)
+            {
+                Error = result.Error;
+            }
+
+            return result.Value;
         }
 
-        return result.Value;
-    }
+        public RuntimeResult Success(Number value)
+        {
+            Value = value;
+            return this;
+        }
 
-    public RuntimeResult Success(Number value)
-    {
-        Value = value;
-        return this;
-    }
-
-    public RuntimeResult Failure(Error error)
-    {
-        Error = error;
-        return this;
+        public RuntimeResult Failure(Error error)
+        {
+            Error = error;
+            return this;
+        }
     }
 }

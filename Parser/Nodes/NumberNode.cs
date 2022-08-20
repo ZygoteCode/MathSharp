@@ -1,18 +1,21 @@
-﻿public class NumberNode
+﻿namespace MathSharp
 {
-    public Token Token { get; set; }
-    public Position PositionStart { get; set; }
-    public Position PositionEnd { get; set; }
-
-    public NumberNode(Token token)
+    public class NumberNode
     {
-        Token = token;
-        PositionStart = token.PositionStart;
-        PositionEnd = token.PositionEnd;
-    }
+        public Token Token { get; set; }
+        public Position PositionStart { get; set; }
+        public Position PositionEnd { get; set; }
 
-    public override string ToString()
-    {
-        return Token.ToString();
+        public NumberNode(Token token)
+        {
+            Token = token;
+            PositionStart = token.PositionStart;
+            PositionEnd = token.PositionEnd;
+        }
+
+        public override string ToString()
+        {
+            return Token.ToString();
+        }
     }
 }

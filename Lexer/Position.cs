@@ -1,32 +1,35 @@
-﻿public class Position
+﻿namespace MathSharp
 {
-    public int Index { get; set; }
-    public int Line { get; set; }
-    public int Column { get; set; }
-
-    public Position(int index, int line, int column)
+    public class Position
     {
-        Index = index;
-        Line = line;
-        Column = column;
-    }
+        public int Index { get; set; }
+        public int Line { get; set; }
+        public int Column { get; set; }
 
-    public Position Next(char currentCharacter = default(char))
-    {
-        Index++;
-        Column++;
-
-        if (currentCharacter == '\n')
+        public Position(int index, int line, int column)
         {
-            Line++;
-            Column = 0;
+            Index = index;
+            Line = line;
+            Column = column;
         }
 
-        return this;
-    }
+        public Position Next(char currentCharacter = default(char))
+        {
+            Index++;
+            Column++;
 
-    public Position Clone()
-    {
-        return new Position(Index, Line, Column);
+            if (currentCharacter == '\n')
+            {
+                Line++;
+                Column = 0;
+            }
+
+            return this;
+        }
+
+        public Position Clone()
+        {
+            return new Position(Index, Line, Column);
+        }
     }
 }

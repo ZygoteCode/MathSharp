@@ -1,34 +1,37 @@
-﻿public class ParserResult
+﻿namespace MathSharp
 {
-    public object Node { get; set; }
-    public Error Error { get; set; }
-
-    public object Register(object result)
+    public class ParserResult
     {
-        if (result.GetType() == typeof(ParserResult))
-        {
-            ParserResult newResult = (ParserResult)result;
+        public object Node { get; set; }
+        public Error Error { get; set; }
 
-            if (newResult.Error != null)
+        public object Register(object result)
+        {
+            if (result.GetType() == typeof(ParserResult))
             {
-                Error = newResult.Error;
+                ParserResult newResult = (ParserResult)result;
+
+                if (newResult.Error != null)
+                {
+                    Error = newResult.Error;
+                }
+
+                return newResult.Node;
             }
 
-            return newResult.Node;
+            return result;
         }
 
-        return result;
-    }
+        public ParserResult Success(object node)
+        {
+            this.Node = node;
+            return this;
+        }
 
-    public ParserResult Success(object node)
-    {
-        this.Node = node;
-        return this;
-    }
-
-    public ParserResult Failure(Error error)
-    {
-        this.Error = error;
-        return this;
+        public ParserResult Failure(Error error)
+        {
+            this.Error = error;
+            return this;
+        }
     }
 }
